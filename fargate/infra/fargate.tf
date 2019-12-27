@@ -6,6 +6,7 @@ resource "aws_iam_role" "task_execution" {
   name               = "FargateTaskExecutionRole"
   assume_role_policy = <<EOF
 {
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Sid": "AllowFargateToPullAndDeployDockerImage",
@@ -23,4 +24,28 @@ EOF
     generator = "terraform"
     env       = "eval"
   }
+}
+
+resource "aws_iam_role_policy" "task_execution" {
+  name   = "FargateTaskExecutionRolePolicy"
+  role   = aws_iam_role.task_execution.id
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
 }
