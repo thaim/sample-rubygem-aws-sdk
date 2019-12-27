@@ -1,0 +1,21 @@
+{
+    "family": "sample-fargate",
+    "executionRoleArn": "arn:aws:iam::AWS_ACCOUNT_ID:role/FargateTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "fargate-app",
+            "image": "AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/eval-fargate-batch:latest",
+            "essential": true,
+            "entryPoint": [
+                "/usr/local/bin/python3",
+		        "run.py"
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
