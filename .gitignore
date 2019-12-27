@@ -1,0 +1,10 @@
+
+
+## state files
+.terraform/
+*.tfstate
+*.backup
+
+## credentials
+secrets.json
+*.tfvars
