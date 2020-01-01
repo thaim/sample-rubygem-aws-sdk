@@ -18,5 +18,6 @@ register: ## Register ECS taskdef
 deploy: ## Deploy fargate task
 	aws ${PROFILE} ecs run-task \
 		--cluster terraform-test \
+		--launch-type FARGATE \
 		--task-definition sample-fargate \
 		--network-configuration $(shell cat network-config.json)
