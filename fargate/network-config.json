@@ -1,1 +1,1 @@
-"awsvpcConfiguration={subnets=["subnet-cf3b0a94"],securityGroups=["sg-b35a27c0"]}"
+"awsvpcConfiguration={subnets=["subnet-cf3b0a94"],securityGroups=["sg-b35a27c0"],assignPublicIp="ENABLED"}"
