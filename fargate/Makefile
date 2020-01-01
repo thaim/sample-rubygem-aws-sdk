@@ -15,9 +15,12 @@ generate: ## Generate taskdef file from template
 register: ## Register ECS taskdef
 	aws ${PROFILE} ecs register-task-definition --cli-input-json file://ecs_taskdef.json
 
-deploy: ## Deploy fargate task
+deploycli: ## Deploy fargate task using aws cli
 	aws ${PROFILE} ecs run-task \
 		--cluster terraform-test \
 		--launch-type FARGATE \
 		--task-definition sample-fargate \
 		--network-configuration $(shell cat network-config.json)
+
+deploygem: ## Deploy fargate task using aws sdk
+	ruby deploy.rb
